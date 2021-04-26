@@ -11,6 +11,7 @@ public class ProfileDTO implements Serializable {
 
 	private long profile_no;
 	private String username;
+	private String nickname;
 	private String password;
 	private String email;
 	private long read_count;

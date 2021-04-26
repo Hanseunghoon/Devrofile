@@ -1,6 +1,8 @@
 package mvc.models;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import lombok.Data;
 
@@ -15,6 +17,7 @@ public class ProfileDTO implements Serializable {
 	private String password;
 	private String email;
 	private long read_count;
+	private Date regdate;
 	private String github;
 	private long acmicpc_rank;
 	private long acmicpc_solved;

@@ -5,17 +5,17 @@ import java.util.List;
 
 public interface ProfileDAO {
 
-	void insertArticle(ProfileDTO articleDTO) throws SQLException;
+	void enrollProfile(ProfileDTO profileDTO) throws SQLException;
 
-	List<ProfileDTO> getArticleList() throws SQLException;
+	List<ProfileDTO> getProfileList() throws SQLException;
 
 	void updateReadcount(long no) throws SQLException;
 
 	ProfileDTO getDetail(long no) throws SQLException;
 
-	int updateArticle(ProfileDTO articleDTO) throws SQLException;
+	int updateProfile(ProfileDTO profileDTO) throws SQLException;
 
 	ProfileDTO getDelete(long no) throws SQLException;
 
-	int deleteArticle(ProfileDTO articleDTO) throws SQLException;
+	int deleteProfile(ProfileDTO profileDTO) throws SQLException;
 }

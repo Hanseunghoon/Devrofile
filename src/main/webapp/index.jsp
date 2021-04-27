@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%
-	response.sendRedirect("profile/list");
+	response.sendRedirect("profile/home");
 	%>
 </body>
 </html>

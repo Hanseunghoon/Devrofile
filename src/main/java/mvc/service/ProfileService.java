@@ -7,7 +7,7 @@ public interface ProfileService {
 
 	List<ProfileDTO> getProfileList() throws Exception;
 	
-//	void enrollProfile(ProfileDTO profileDTO) throws Exception;
+	void insertProfile(ProfileDTO profileDTO) throws Exception;
 //
 //	ProfileDTO getDetail(long no, boolean updateReadcount) throws Exception;
 //

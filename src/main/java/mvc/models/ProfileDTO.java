@@ -19,6 +19,7 @@ public class ProfileDTO implements Serializable {
 	private long read_count;
 	private Date regdate;
 	private String github;
+	private String website;
 	private long acmicpc_rank;
 	private long acmicpc_solved;
 	private long acmicpc_rate;

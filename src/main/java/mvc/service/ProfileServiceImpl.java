@@ -24,4 +24,12 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<ProfileDTO> getProfileList() throws Exception {
 		return profileDAO.getProfileList();
 	}
+
+	/*-------------------------------
+	   프로필 작성 후 등록하기 
+	-------------------------------*/
+	@Override
+	public void insertProfile(ProfileDTO profileDTO) throws Exception {
+		profileDAO.insertProfile(profileDTO);
+	}
 }

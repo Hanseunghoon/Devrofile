@@ -60,4 +60,35 @@ public class ProfileDAOImpl implements ProfileDAO {
 		}
 		return list;
 	}
+	
+	/*-------------------------------
+	     프로필 작성 후 등록하기 
+	-------------------------------*/
+	@Override
+	public void insertProfile(ProfileDTO profileDTO) throws SQLException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO t_profile(profile_no, nickname, username, password, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job) ");
+		sql.append("VALUES(t_profile_no_seq.nextval, ?, ?, ?, ?, 0, sysdate, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?) ");
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			ps.setString(1, profileDTO.getNickname());
+			ps.setString(2, profileDTO.getUsername());
+			ps.setString(3, profileDTO.getPassword());
+			ps.setString(4, profileDTO.getEmail());
+			ps.setString(5, profileDTO.getGithub());
+			ps.setString(6, profileDTO.getWebsite());
+			ps.setLong(7, profileDTO.getAcmicpc_rank());
+			ps.setLong(8, profileDTO.getAcmicpc_solved());
+			ps.setLong(9, profileDTO.getAcmicpc_rate());
+			ps.setString(10, profileDTO.getTech_stacks());
+			ps.setString(11, profileDTO.getProject_name());
+			ps.setString(12, profileDTO.getAward_name());
+			ps.setString(13, profileDTO.getUniversity_name());
+			ps.setString(14, profileDTO.getMajor());
+			ps.setString(15, profileDTO.getCompany_name());
+			ps.setString(16, profileDTO.getJob());
+			ps.executeUpdate();
+		}
+	}
 }

@@ -42,7 +42,7 @@ public class DispatcherServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String action = uri.substring(contextPath.length());

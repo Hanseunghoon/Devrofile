@@ -26,6 +26,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="enroll">프로필 등록하기</a>
+	<a href="insert">프로필 등록하기</a>
 </body>
 </html>

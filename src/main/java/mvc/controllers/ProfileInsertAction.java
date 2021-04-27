@@ -47,7 +47,6 @@ public class ProfileInsertAction extends AbstractController {
 		profileDTO.setMajor(major);
 		profileDTO.setCompany_name(company_name);
 		profileDTO.setJob(job);
-//		System.out.println(profileDTO);
 
 		ProfileService profileService = ProfileServiceImpl.getInstance();
 

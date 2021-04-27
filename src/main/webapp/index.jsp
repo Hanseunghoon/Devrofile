@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로필 목록 - 데브로필(Devrofile)</title>
+<title>데브로필, 나만의 프로필을 만들다.</title>
 </head>
 <body>
 	<%

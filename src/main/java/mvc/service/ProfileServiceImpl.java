@@ -32,4 +32,27 @@ public class ProfileServiceImpl implements ProfileService {
 	public void insertProfile(ProfileDTO profileDTO) throws Exception {
 		profileDAO.insertProfile(profileDTO);
 	}
+	
+	/*----------------------------------
+	   프로필 상세 보기 및 조회수 증가
+	----------------------------------*/
+	@Override
+	public ProfileDTO getDetail(long no) throws Exception {
+		return getDetail(no, true);
+	}
+
+	@Override
+	public ProfileDTO getDetail(long no, boolean updateReadcount) throws Exception {
+		try {
+			if (updateReadcount)
+				profileDAO.updateReadcount(no);
+
+			ProfileDTO articleDTO = profileDAO.getDetail(no);
+			if (articleDTO == null) {
+				throw new RuntimeException("상세보기 실패");
+			}
+			return articleDTO;
+		} finally {
+		}
+	}
 }

@@ -19,7 +19,7 @@
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td>${dto.profile_no}</td>
-				<td><a href="detail?no=${dto.profile_no}">${dto.nickname}(${dto.username})님의
+				<td><a href="detail?profile_no=${dto.profile_no}">${dto.nickname}(${dto.username})님의
 						데브로필</a></td>
 				<td>${dto.regdate}</td>
 				<td>${dto.read_count}</td>

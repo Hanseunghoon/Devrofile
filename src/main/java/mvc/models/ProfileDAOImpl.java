@@ -60,14 +60,15 @@ public class ProfileDAOImpl implements ProfileDAO {
 		}
 		return list;
 	}
-	
+
 	/*-------------------------------
 	     프로필 작성 후 등록하기 
 	-------------------------------*/
 	@Override
 	public void insertProfile(ProfileDTO profileDTO) throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO t_profile(profile_no, nickname, username, password, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job) ");
+		sql.append(
+				"INSERT INTO t_profile(profile_no, nickname, username, password, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job) ");
 		sql.append("VALUES(t_profile_no_seq.nextval, ?, ?, ?, ?, 0, sysdate, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?) ");
 
 		try (Connection conn = dataSource.getConnection();
@@ -90,5 +91,51 @@ public class ProfileDAOImpl implements ProfileDAO {
 			ps.setString(16, profileDTO.getJob());
 			ps.executeUpdate();
 		}
+	}
+
+	/*-------------------------------
+    		 프로필 상세보기 
+	-------------------------------*/
+	@Override
+	public ProfileDTO getDetail(long profile_no) throws SQLException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select nickname, username, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job ");
+		sql.append("from   t_profile ");
+		sql.append("where  profile_no=? ");
+
+		ProfileDTO profileDTO = null;
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			
+			ps.setLong(1, profile_no);
+			
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					profileDTO = new ProfileDTO();
+					profileDTO.setNickname(rs.getString("nickname"));
+					profileDTO.setUsername(rs.getString("username"));
+					profileDTO.setEmail(rs.getString("email"));
+					profileDTO.setGithub(rs.getString("github"));
+					profileDTO.setWebsite(rs.getString("website"));
+					profileDTO.setAcmicpc_rank(Long.parseLong(rs.getString("acmicpc_rank")));
+					profileDTO.setAcmicpc_solved(Long.parseLong(rs.getString("acmicpc_solved")));
+					profileDTO.setAcmicpc_rate(Long.parseLong(rs.getString("acmicpc_rate")));
+					profileDTO.setTech_stacks(rs.getString("tech_stacks"));
+					profileDTO.setProject_name(rs.getString("project_name"));
+					profileDTO.setAward_name(rs.getString("award_name"));
+					profileDTO.setUniversity_name(rs.getString("university_name"));
+					profileDTO.setMajor(rs.getString("major"));
+					profileDTO.setCompany_name(rs.getString("company_name"));
+					profileDTO.setJob(rs.getString("job"));
+				}
+			}
+		}
+		return profileDTO;
+	}
+	
+	@Override
+	public void updateReadcount(long no) throws SQLException {
+
 	}
 }

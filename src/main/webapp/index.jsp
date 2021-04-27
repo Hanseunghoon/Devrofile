@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>프로필 목록 - 데브로필(Devrofile)</title>
 </head>
 <body>
 	<%
-	response.sendRedirect("");
+	response.sendRedirect("profile/list");
 	%>
 </body>
 </html>

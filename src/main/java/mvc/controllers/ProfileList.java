@@ -13,14 +13,14 @@ import mvc.service.ProfileServiceImpl;
 
 public class ProfileList extends AbstractController {
 	private ProfileService profileService = ProfileServiceImpl.getInstance();
-	
+
 	@Override
 	public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		ModelAndView mav = new ModelAndView();
 		try {
 			List<ProfileDTO> list = profileService.getProfileList();
-			for(ProfileDTO dto : list) {
+			for (ProfileDTO dto : list) {
 				System.out.println(dto);
 				break;
 			}

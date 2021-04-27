@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<Resource 
-   auth="Container" 
-   driverClassName="oracle.jdbc.OracleDriver" 
-   maxIdle="10" 
-   maxTotal="20" 
-   maxWaitMillis="-1" 
-   name="jdbc/oracle" 
-   password="me" 
-   type="javax.sql.DataSource" 
-   url="jdbc:oracle:thin:@localhost:1521/xepdb1" 
-   username="ace"/>
-   
-<Resource 
-   auth="Container" 
-   driverClassName="oracle.jdbc.OracleDriver" 
-   maxIdle="10" 
-   maxTotal="20" 
-   maxWaitMillis="-1" 
-   name="jdbc/oracle2" 
-   password="devrofile" 
-   type="javax.sql.DataSource" 
-   url="jdbc:oracle:thin:@localhost:1521/xepdb1" 
-   username="devrofile"/>
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20"
+		maxWaitMillis="-1" name="jdbc/oracle" password="devrofile"
+		type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@localhost:1521/xepdb1" username="devrofile" />
 
 </Context>

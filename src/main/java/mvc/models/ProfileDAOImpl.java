@@ -180,4 +180,54 @@ public class ProfileDAOImpl implements ProfileDAO {
 			return ps.executeUpdate();
 		}
 	}
+
+	
+	/*------------------------------
+			프로필 수정하기
+	------------------------------*/	
+	@Override
+	public int updateProfile(ProfileDTO profileDTO) throws SQLException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE t_profile SET ");
+		sql.append("       nickname=?     ");
+		sql.append("      ,username=?      ");
+		sql.append("      ,password=?   ");
+		sql.append("      ,email=?      ");
+		sql.append("      ,github=?   ");
+		sql.append("      ,website=?      ");
+		sql.append("      ,acmicpc_rank=?   ");
+		sql.append("      ,acmicpc_solved=?      ");
+		sql.append("      ,acmicpc_rate=?   ");
+		sql.append("      ,tech_stacks=?      ");
+		sql.append("      ,project_name=?   ");
+		sql.append("      ,award_name=?      ");
+		sql.append("      ,university_name=?   ");
+		sql.append("      ,major=?      ");
+		sql.append("      ,company_name=?   ");
+		sql.append("      ,job=?   ");
+		sql.append("WHERE  profile_no=? AND password=? ");
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			ps.setString(1, profileDTO.getNickname());
+			ps.setString(2, profileDTO.getUsername());
+			ps.setString(3, profileDTO.getPassword());
+			ps.setString(4, profileDTO.getEmail());
+			ps.setString(5, profileDTO.getGithub());
+			ps.setString(6, profileDTO.getWebsite());
+			ps.setLong(7, profileDTO.getAcmicpc_rank());
+			ps.setLong(8, profileDTO.getAcmicpc_solved());
+			ps.setLong(9, profileDTO.getAcmicpc_rate());
+			ps.setString(10, profileDTO.getTech_stacks());
+			ps.setString(11, profileDTO.getProject_name());
+			ps.setString(12, profileDTO.getAward_name());
+			ps.setString(13, profileDTO.getUniversity_name());
+			ps.setString(14, profileDTO.getMajor());
+			ps.setString(15, profileDTO.getCompany_name());
+			ps.setString(16, profileDTO.getJob());
+			ps.setLong(17, profileDTO.getProfile_no());
+			ps.setString(18, profileDTO.getPassword());
+			return ps.executeUpdate();
+		}
+	}
 }

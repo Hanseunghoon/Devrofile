@@ -13,7 +13,7 @@ public interface ProfileService {
 	
 	ProfileDTO getDetail(long no,  boolean updateReadcount) throws Exception;
 
-//	void updateProfile(ProfileDTO profileDTO) throws Exception;
+	void updateProfile(ProfileDTO profileDTO) throws Exception;
 
 	ProfileDTO getDelete(long no) throws Exception;
 

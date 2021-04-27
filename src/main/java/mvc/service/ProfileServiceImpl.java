@@ -82,4 +82,14 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		return null;
 	}
+
+	/*----------------------------
+	    	프로필 수정하기
+	-----------------------------*/
+	@Override
+	public void updateProfile(ProfileDTO profileDTO) throws Exception {
+		if (profileDAO.updateProfile(profileDTO) == 0) {
+			throw new RuntimeException("글이 없거나 비밀번호가 틀립니다.");
+		}
+	}
 }

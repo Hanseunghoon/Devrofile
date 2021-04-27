@@ -13,8 +13,8 @@ public interface ProfileDAO {
 
 	ProfileDTO getDetail(long no) throws SQLException;
 
-//	int updateProfile(ProfileDTO profileDTO) throws SQLException;
-//
+	int updateProfile(ProfileDTO profileDTO) throws SQLException;
+
 	ProfileDTO getDelete(long no) throws SQLException;
 
 	int deleteProfile(ProfileDTO profileDTO) throws SQLException;

@@ -49,11 +49,11 @@ public class ProfileInsertAction extends AbstractController {
 		profileDTO.setJob(job);
 //		System.out.println(profileDTO);
 
-		ProfileService articleService = ProfileServiceImpl.getInstance();
+		ProfileService profileService = ProfileServiceImpl.getInstance();
 
 		ModelAndView mav = new ModelAndView();
 		try {
-			articleService.insertProfile(profileDTO);
+			profileService.insertProfile(profileDTO);
 			mav.setViewName("redirect:list");
 		} catch (Exception e) {
 			e.printStackTrace();

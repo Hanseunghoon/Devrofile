@@ -7,6 +7,7 @@ import mvc.models.ProfileDAOImpl;
 import mvc.models.ProfileDTO;
 
 public class ProfileServiceImpl implements ProfileService {
+
 	private static final ProfileService articleService = new ProfileServiceImpl();
 	private ProfileDAO profileDAO = ProfileDAOImpl.getInstance();
 
@@ -18,7 +19,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	/*-------------------------------
-	   프로필 리스트 불러오기 
+	   	프로필 리스트 불러오기 
 	-------------------------------*/
 	@Override
 	public List<ProfileDTO> getProfileList() throws Exception {
@@ -26,13 +27,13 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	/*-------------------------------
-	   프로필 작성 후 등록하기 
+	   	프로필 작성 후 등록하기 
 	-------------------------------*/
 	@Override
 	public void insertProfile(ProfileDTO profileDTO) throws Exception {
 		profileDAO.insertProfile(profileDTO);
 	}
-	
+
 	/*----------------------------------
 	   프로필 상세 보기 및 조회수 증가
 	----------------------------------*/
@@ -47,12 +48,38 @@ public class ProfileServiceImpl implements ProfileService {
 			if (updateReadcount)
 				profileDAO.updateReadcount(no);
 
-			ProfileDTO articleDTO = profileDAO.getDetail(no);
-			if (articleDTO == null) {
+			ProfileDTO profileDTO = profileDAO.getDetail(no);
+			if (profileDTO == null) {
 				throw new RuntimeException("상세보기 실패");
 			}
-			return articleDTO;
-		} finally {
+			return profileDTO;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return null;
+	}
+
+	/*----------------------------
+	   	    프로필 삭제하기
+	-----------------------------*/
+	@Override
+	public void deleteProfile(ProfileDTO profileDTO) throws Exception {
+		if (profileDAO.deleteProfile(profileDTO) != 1) {
+			throw new RuntimeException("글이 없거나 비밀번호가 틀립니다.");
+		}
+	}
+
+	@Override
+	public ProfileDTO getDelete(long profile_no) throws Exception {
+		try {
+			ProfileDTO profileDTO = profileDAO.getDelete(profile_no);
+			if (profileDTO == null) {
+				throw new RuntimeException("글 삭제를 위한 폼 읽어오기 실패");
+			}
+			return profileDTO;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

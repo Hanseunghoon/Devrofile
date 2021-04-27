@@ -94,12 +94,13 @@ public class ProfileDAOImpl implements ProfileDAO {
 	}
 
 	/*-------------------------------
-    		 프로필 상세보기 
+			 프로필 상세보기 
 	-------------------------------*/
 	@Override
 	public ProfileDTO getDetail(long profile_no) throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select nickname, username, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job ");
+		sql.append(
+				"select nickname, username, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job ");
 		sql.append("from   t_profile ");
 		sql.append("where  profile_no=? ");
 
@@ -107,20 +108,21 @@ public class ProfileDAOImpl implements ProfileDAO {
 
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
-			
+
 			ps.setLong(1, profile_no);
-			
+
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
 					profileDTO = new ProfileDTO();
+					profileDTO.setProfile_no(profile_no);
 					profileDTO.setNickname(rs.getString("nickname"));
 					profileDTO.setUsername(rs.getString("username"));
 					profileDTO.setEmail(rs.getString("email"));
 					profileDTO.setGithub(rs.getString("github"));
 					profileDTO.setWebsite(rs.getString("website"));
-					profileDTO.setAcmicpc_rank(Long.parseLong(rs.getString("acmicpc_rank")));
-					profileDTO.setAcmicpc_solved(Long.parseLong(rs.getString("acmicpc_solved")));
-					profileDTO.setAcmicpc_rate(Long.parseLong(rs.getString("acmicpc_rate")));
+					profileDTO.setAcmicpc_rank(rs.getLong("acmicpc_rank"));
+					profileDTO.setAcmicpc_solved(rs.getLong("acmicpc_solved"));
+					profileDTO.setAcmicpc_rate(rs.getLong("acmicpc_rate"));
 					profileDTO.setTech_stacks(rs.getString("tech_stacks"));
 					profileDTO.setProject_name(rs.getString("project_name"));
 					profileDTO.setAward_name(rs.getString("award_name"));
@@ -133,9 +135,49 @@ public class ProfileDAOImpl implements ProfileDAO {
 		}
 		return profileDTO;
 	}
-	
+
 	@Override
 	public void updateReadcount(long no) throws SQLException {
 
+	}
+
+	/*-------------------------------
+	 		프로필 삭제하기
+	-------------------------------*/
+	@Override
+	public ProfileDTO getDelete(long no) throws SQLException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select profile_no, password ");
+		sql.append("from t_profile              ");
+		sql.append("where profile_no=?          ");
+		ProfileDTO profileDTO = null;
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			ps.setLong(1, no);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					profileDTO = new ProfileDTO();
+					profileDTO.setProfile_no(rs.getLong("profile_no"));
+					profileDTO.setPassword(rs.getString("password"));
+				}
+			}
+		}
+		return profileDTO;
+	}
+
+	@Override
+	public int deleteProfile(ProfileDTO profileDTO) throws SQLException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from t_profile ");
+		sql.append("where profile_no=?    ");
+		sql.append("and password=?        ");
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			ps.setLong(1, profileDTO.getProfile_no());
+			ps.setString(2, profileDTO.getPassword());
+			return ps.executeUpdate();
+		}
 	}
 }

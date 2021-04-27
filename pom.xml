@@ -34,6 +34,12 @@
 			<version>1.18.20</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Maven jQuery jars -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

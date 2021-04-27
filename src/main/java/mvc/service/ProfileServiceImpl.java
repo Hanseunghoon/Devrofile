@@ -17,6 +17,9 @@ public class ProfileServiceImpl implements ProfileService {
 		return articleService;
 	}
 
+	/*-------------------------------
+	   프로필 리스트 불러오기 
+	-------------------------------*/
 	@Override
 	public List<ProfileDTO> getProfileList() throws Exception {
 		return profileDAO.getProfileList();

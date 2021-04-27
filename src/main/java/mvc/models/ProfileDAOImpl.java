@@ -29,6 +29,9 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return profileDAO;
 	}
 
+	/*-------------------------------
+	 	   프로필 리스트 불러오기 
+	 -------------------------------*/
 	@Override
 	public List<ProfileDTO> getProfileList() throws SQLException {
 		StringBuffer sql = new StringBuffer();

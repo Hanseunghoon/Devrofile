@@ -211,14 +211,14 @@ body {
 	letter-spacing: 0.01em;
 	background-color: #fff;
 	text-decoration: none;
-	background-image: url("icon-favorite-muted.svg");
+	background-image: url("../assets/icon-favorite-muted.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	border: 0.1px solid #bbb;
 }
 
 .stats-likes:hover {
-	background-image: url("icon-favorite-active.svg");
+	background-image: url("../assets/icon-favorite-active.svg");
 	opacity: 0.6;
 }
 

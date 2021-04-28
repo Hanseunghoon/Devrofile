@@ -5,7 +5,9 @@ import mvc.models.ProfileDTO;
 
 public interface ProfileService {
 
-	List<ProfileDTO> getProfileList() throws Exception;
+	List<ProfileDTO> getProfileList(long page) throws Exception;
+	
+	long getListSize() throws Exception;
 	
 	void insertProfile(ProfileDTO profileDTO) throws Exception;
 

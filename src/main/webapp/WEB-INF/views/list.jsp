@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,8 @@
 	box-sizing: border-box;
 }
 
-@keyframes fadeIn {from { opacity:0;
+@
+keyframes fadeIn {from { opacity:0;
 	
 }
 
@@ -256,6 +258,22 @@ th, td {
 .table100.ver1 .ps__rail-y .ps__thumb-y::before {
 	background-color: #cccccc;
 }
+
+/* Pagination */
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 12px;
+}
+
+.pagination a {
+	text-decoration: none;
+	font0 font-family: "SpoqaHanSans";
+	font-size: 24px;
+	line-height: 1.5;
+	color: #666;
+	letter-spacing: 0.01em;
+}
 </style>
 <title>목록 - 데브로필, 나만의 프로필을 만들다.</title>
 </head>
@@ -295,6 +313,23 @@ th, td {
 							</tbody>
 						</table>
 					</div>
+				</div>
+
+				<div class="pagination">
+					<c:if test="${pageNum != 0 ? visible : hidden}" var="status">
+						<a style="visibility: ${status}"
+							href="list.jsp?page=${pageNum - 1}">[이전]</a>
+					</c:if>
+
+					<c:forEach begin="0" end="${endPage - 1}" step="1" var="page">
+						<a class="pagination-page" href="list.jsp?page=${page}">${page + 1}</a>
+					</c:forEach>
+
+					<c:if test="${pageNum != endpage - 1 ? visible : hidden}"
+						var="status">
+						<a style="visibility: ${status}"
+							href="list.jsp?page=${pageNum + 1}">[다음]</a>
+					</c:if>
 				</div>
 				<a class="insert" href="insert">REGISTER</a>
 			</div>

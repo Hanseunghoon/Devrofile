@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface ProfileDAO {
 	
-	List<ProfileDTO> getProfileList() throws SQLException;
+	List<ProfileDTO> getProfileList(long page) throws SQLException;
+	
+	long getListSize() throws SQLException;
 
 	void insertProfile(ProfileDTO profileDTO) throws SQLException;
 

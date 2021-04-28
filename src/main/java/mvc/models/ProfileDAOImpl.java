@@ -30,21 +30,22 @@ public class ProfileDAOImpl implements ProfileDAO {
 	}
 
 	/*-------------------------------
-	 	   프로필 리스트 불러오기 
+	 	  프로필 리스트 불러오기 
 	 -------------------------------*/
 	@Override
-	public List<ProfileDTO> getProfileList() throws SQLException {
+	public List<ProfileDTO> getProfileList(long page) throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select B.* ");
-		sql.append("from  (select rownum as rnum, A.* ");
-		sql.append("       from  (select profile_no, username, nickname, regdate, read_count from t_profile ");
-		sql.append("              order by profile_no desc) A) B ");
-		sql.append("where rnum between 1 and 10 ");
+		sql.append("select profile_no, username, nickname, regdate, read_count ");
+		sql.append("from t_profile ");
+		sql.append("order by profile_no desc ");
+		sql.append("offset 10 * ? rows fetch first 10 rows only ");
 
 		List<ProfileDTO> list = new ArrayList<>();
 
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+			ps.setLong(1, page-1);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
@@ -59,6 +60,25 @@ public class ProfileDAOImpl implements ProfileDAO {
 			}
 		}
 		return list;
+	}
+
+	public long getListSize() throws SQLException {
+
+		long total = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("select count(*) as total from t_profile ");
+
+		List<ProfileDTO> list = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next())
+					total = rs.getLong("total");
+			}
+		}
+		return total;
 	}
 
 	/*-------------------------------
@@ -181,10 +201,9 @@ public class ProfileDAOImpl implements ProfileDAO {
 		}
 	}
 
-	
 	/*------------------------------
 			프로필 수정하기
-	------------------------------*/	
+	------------------------------*/
 	@Override
 	public int updateProfile(ProfileDTO profileDTO) throws SQLException {
 		StringBuffer sql = new StringBuffer();

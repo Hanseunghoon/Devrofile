@@ -22,8 +22,12 @@ public class ProfileServiceImpl implements ProfileService {
 	   	프로필 리스트 불러오기 
 	-------------------------------*/
 	@Override
-	public List<ProfileDTO> getProfileList() throws Exception {
-		return profileDAO.getProfileList();
+	public List<ProfileDTO> getProfileList(long page) throws Exception {
+		return profileDAO.getProfileList(page);
+	}
+	
+	public long getListSize() throws Exception {
+		return profileDAO.getListSize();
 	}
 
 	/*-------------------------------

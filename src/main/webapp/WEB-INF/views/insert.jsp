@@ -51,7 +51,7 @@ html {
 	position: relative;
 	flex-grow: 0;
 	flex-shrink: 0;
-	padding: 40px 36px 36px;
+	padding: 10px 36px 36px;
 	border-radius: 12px;
 	background-color: #fff;
 	transition: box-shadow 250ms ease-in, transform 250ms ease-in;
@@ -59,7 +59,7 @@ html {
 
 h1 {
 	margin-bottom: 20px;
-	font-size: 40px;
+	font-size: 24px;
 	line-height: 1.35;
 	font-weight: 600;
 	letter-spacing: -0.025em;
@@ -131,7 +131,7 @@ p {
 	<div class="modal">
 		<form class="input-group" action="insertAction" method="post">
 			<table class="input-group-table">
-				<h1>데브로필 작성</h1>
+				<h1>Write your Dev Info!</h1>
 				<tr>
 					<th>User Name</th>
 					<td><input type="text" name="username" autofocus="autofocus"

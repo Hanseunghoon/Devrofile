@@ -26,21 +26,19 @@ public class ProfileList extends AbstractController {
 		}
 		catch (Exception e){
 		}
+				
+		ModelAndView mav = new ModelAndView();	
 		
-		ModelAndView mav = new ModelAndView();		
 		try {
 			List<ProfileDTO> list = profileService.getProfileList(page);
 			long total = profileService.getListSize();
 			
-			if(total % 10 == 0)
-				endPage = (total / 10);
+			if(total % 8 == 0)
+				endPage = (total / 8);
 			else
-				endPage = (total / 10) + 1;
+				endPage = (total / 8) + 1;
 			
-			for (ProfileDTO dto : list) {
-				System.out.println(dto);
-				break;
-			}
+			System.out.println(total + ", " + page);
 			
 			mav.setViewName("/WEB-INF/views/list.jsp");
 			mav.addObject("list", list);

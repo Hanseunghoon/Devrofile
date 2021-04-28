@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+@import
+	url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "SpoqaHanSans";
+}
+
+@keyframes fadeIn {from { opacity:0;
+	
+}
+
+to {
+	opacity: 1;
+}
+
+}
+html {
+	font-family: "SpoqaHanSans";
+	font-size: 16px;
+	line-height: 1.5;
+	color: #1f2d3d;
+	background: #333333;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	animation: fadeIn 0.5s ease-in-out forwards;
+	width: 100%;
+	height: 100vh;
+	margin: 0 auto;
+	background-color: #1f2d3d;
+}
+
+#canvas {
+	margin: 40px 0;
+}
+
+.linkBtn {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 120px;
+	height: 45px;
+	border-radius: 6px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+	text-decoration: none;
+	background: linear-gradient(90deg, #9f32ff 0%, #fb07f3 100%);
+	margin-top: 6px;
+	height: 45px;
+}
+
+.footer {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+	padding: 40px 36px 36px;
+	border-radius: 12px;
+	background-color: #fff;
+	transition: box-shadow 250ms ease-in, transform 250ms ease-in;
+	flex-grow: 0;
+	flex-direction: row;
+	flex-grow: 0;
+	width: 100%;
+	margin-top: 10px;
+	flex-grow: 0;
+}
+
+.user-profile {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 720px;
+	padding: 16px 16px;
+	background-color: #fff;
+	margin-top: 4px;
+}
+
+.user-profile:first-child {
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.user-profile:last-child {
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.user-profile-photo {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 300px;
+}
+
+.user-profile-photo img {
+	width: 150px;
+	height: auto;
+	border-radius: 150px;
+	border: 1px solid #eaeaea;
+}
+
+.user-profile-data {
+	flex-grow: 2;
+	padding: 4px 0;
+}
+
+.user-profile-data h1 {
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 32px;
+	margin: -5px 0 20px;
+}
+
+.user-profile-data dl {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.user-profile-data dl div {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-right: 40px;
+	font-size: 16px;
+	white-space: nowrap;
+}
+
+.user-profile-data dl dt {
+	font-weight: 400;
+	text-transform: lowercase;
+	margin-left: 4px;
+}
+
+.user-profile-data dl dd {
+	font-weight: 700;
+}
+
+.user-profile-data h2, .user-profile-data p, .user-profile-data a {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.user-profile-data h2 {
+	font-weight: 600;
+}
+
+.user-profile-data p {
+	margin-bottom: 10px;
+}
+
+.user-profile-data a {
+	color: #003569;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.tech_stack {
+	background-color: #3f3f3f;
+	border-radius: 6px;
+	margin-right: 10px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #ffffff;
+	padding: 1px 6px;
+	font-weight: 300;
+}
+
+#save {
+	background: #fff;
+	border: none;
+	opacity: 0.8;
+}
+
+#save:hover {
+	opacity: 0.5;
+}
+
+.stats {
+	display: flex;
+	flex-direction: row;
+	margin-top: 3.5px;
+	height: 45px;
+}
+
+.stats-likes {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+	background-color: #fff;
+	text-decoration: none;
+	background-image: url("icon-favorite-muted.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	border: 0.1px solid #bbb;
+}
+
+.stats-likes:hover {
+	background-image: url("icon-favorite-active.svg");
+	opacity: 0.6;
+}
+
+.stats-likes-result {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 8px;
+}

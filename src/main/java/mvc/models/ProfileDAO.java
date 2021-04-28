@@ -20,4 +20,8 @@ public interface ProfileDAO {
 	ProfileDTO getDelete(long no) throws SQLException;
 
 	int deleteProfile(ProfileDTO profileDTO) throws SQLException;
+	
+	int update_Like(long profile_no) throws SQLException;
+	
+	long select_Like(long profile_no) throws SQLException;
 }

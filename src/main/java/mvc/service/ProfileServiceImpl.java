@@ -25,7 +25,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<ProfileDTO> getProfileList(long page) throws Exception {
 		return profileDAO.getProfileList(page);
 	}
-	
+
 	public long getListSize() throws Exception {
 		return profileDAO.getListSize();
 	}
@@ -95,5 +95,15 @@ public class ProfileServiceImpl implements ProfileService {
 		if (profileDAO.updateProfile(profileDTO) == 0) {
 			throw new RuntimeException("글이 없거나 비밀번호가 틀립니다.");
 		}
+	}
+
+	public void update_Like(long profile_no) throws Exception {
+		if (profileDAO.update_Like(profile_no) == 0) {
+			throw new RuntimeException("좋아요를 줄 수 없습니다.");
+		}
+	}
+
+	public long select_Like(long profile_no) throws Exception {
+		return profileDAO.select_Like(profile_no);
 	}
 }

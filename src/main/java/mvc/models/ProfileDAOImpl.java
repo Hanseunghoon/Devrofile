@@ -35,17 +35,18 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public List<ProfileDTO> getProfileList(long page) throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select profile_no, username, nickname, regdate, read_count ");
+		sql.append("select profile_no, username, nickname, regdate, likes ");
 		sql.append("from t_profile ");
 		sql.append("order by profile_no desc ");
-		sql.append("offset 10 * ? rows fetch first 10 rows only ");
+		sql.append("offset 8 * ? rows fetch first 8 rows only ");
 
 		List<ProfileDTO> list = new ArrayList<>();
 
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
 
-			ps.setLong(1, page-1);
+			ps.setLong(1, page);
+			System.out.println("page : " + page);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
@@ -54,7 +55,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 					articleDTO.setUsername(rs.getString("username"));
 					articleDTO.setNickname(rs.getString("nickname"));
 					articleDTO.setRegdate(rs.getDate("regdate"));
-					articleDTO.setRead_count(rs.getLong("read_count"));
+					articleDTO.setLikes(rs.getLong("likes"));
 					list.add(articleDTO);
 				}
 			}
@@ -88,7 +89,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public void insertProfile(ProfileDTO profileDTO) throws SQLException {
 		StringBuffer sql = new StringBuffer();
 		sql.append(
-				"INSERT INTO t_profile(profile_no, nickname, username, password, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job) ");
+				"INSERT INTO t_profile(profile_no, nickname, username, password, email, likes, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job) ");
 		sql.append("VALUES(t_profile_no_seq.nextval, ?, ?, ?, ?, 0, sysdate, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?, ?) ");
 
 		try (Connection conn = dataSource.getConnection();
@@ -120,7 +121,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public ProfileDTO getDetail(long profile_no) throws SQLException {
 		StringBuffer sql = new StringBuffer();
 		sql.append(
-				"select nickname, username, email, read_count, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job ");
+				"select nickname, username, email, likes, regdate, github, website, acmicpc_rank, acmicpc_solved, acmicpc_rate, tech_stacks, project_name, award_name, university_name, major, company_name, job ");
 		sql.append("from   t_profile ");
 		sql.append("where  profile_no=? ");
 
@@ -140,6 +141,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 					profileDTO.setEmail(rs.getString("email"));
 					profileDTO.setGithub(rs.getString("github"));
 					profileDTO.setWebsite(rs.getString("website"));
+					profileDTO.setLikes(rs.getLong("likes"));
 					profileDTO.setAcmicpc_rank(rs.getLong("acmicpc_rank"));
 					profileDTO.setAcmicpc_solved(rs.getLong("acmicpc_solved"));
 					profileDTO.setAcmicpc_rate(rs.getLong("acmicpc_rate"));
@@ -249,4 +251,38 @@ public class ProfileDAOImpl implements ProfileDAO {
 			return ps.executeUpdate();
 		}
 	}
+
+	// 좋아요 업데이트
+	public int update_Like(long profile_no) throws SQLException {
+
+		String sql = "update t_profile set likes=likes+1 where profile_no=?";
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+			ps.setLong(1, profile_no);
+			return ps.executeUpdate();
+		}
+	}
+
+	// 좋아요 개수 찾기
+	public long select_Like(long profile_no) throws SQLException {
+
+		String sql = "select likes from t_profile where profile_no=?";
+		int likes = 0;
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+			ps.setLong(1, profile_no);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				likes = rs.getInt("likes");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return likes;
+	}
+
 }

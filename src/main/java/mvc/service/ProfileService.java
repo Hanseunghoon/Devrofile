@@ -20,4 +20,8 @@ public interface ProfileService {
 	ProfileDTO getDelete(long no) throws Exception;
 
 	void deleteProfile(ProfileDTO profileDTO) throws Exception;
+	
+	void update_Like(long profile_no) throws Exception;
+	
+	long select_Like(long profile_no) throws Exception;
 }

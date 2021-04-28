@@ -1,38 +1,32 @@
 package mvc.controllers;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.Connection;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc.fx.AbstractController;
 import mvc.fx.ModelAndView;
-import mvc.models.ProfileDTO;
 import mvc.service.ProfileService;
 import mvc.service.ProfileServiceImpl;
 
-public class ProfileDetail extends AbstractController {
+public class LikesUpdateAction extends AbstractController {
+
 	ProfileService profileService = ProfileServiceImpl.getInstance();
 
 	@Override
 	public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
-
 		long profile_no = Long.parseLong(request.getParameter("profile_no"));
 
+		ModelAndView mav = new ModelAndView();
 		try {
-			ProfileDTO profileDTO = profileService.getDetail(profile_no);
-			return new ModelAndView("/WEB-INF/views/detail.jsp", "profileDTO", profileDTO);
+			profileService.update_Like(profile_no);
+			mav.setViewName("/WEB-INF/views/result.jsp");
+			mav.addObject("msg", profile_no + "번째 프로필을 좋아합니다!");
+			mav.addObject("url", "detail?profile_no=" + profile_no);
 		} catch (Exception e) {
-			e.printStackTrace();
-			ModelAndView mav = new ModelAndView("/WEB-INF/views/result.jsp");
+			mav.setViewName("/WEB-INF/views/result.jsp");
 			mav.addObject("msg", e.getMessage());
-			mav.addObject("url", "list");
-			return mav;
+			mav.addObject("url", "javascript:history.back();");
 		}
+		return mav;
 	}
 }

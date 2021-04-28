@@ -4,128 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../resources/css/insert.css"/>
 <title>데브로필 작성 - 데브로필, 나만의 프로필을 만들다.</title>
-<style type="text/css">
-@import
-	url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
-* {
-	margin: 0;
-	box-sizing: border-box;
-	font-family: "SpoqaHanSans";
-}
-
-@keyframes fadeIn {from { opacity:0;
-	
-}
-
-to {
-	opacity: 1;
-}
-
-}
-html {
-	font-family: "SpoqaHanSans";
-	font-size: 16px;
-	line-height: 1.5;
-	color: #1f2d3d;
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	animation: fadeIn 0.5s ease-in-out forwards;
-	width: 100%;
-	height: 100vh;
-	margin: 0 auto;
-	background-color: #1f2d3d;
-}
-
-html {
-	background: #333333;
-}
-
-.modal {
-	position: relative;
-	flex-grow: 0;
-	flex-shrink: 0;
-	padding: 10px 36px 36px;
-	border-radius: 12px;
-	background-color: #fff;
-	transition: box-shadow 250ms ease-in, transform 250ms ease-in;
-}
-
-h1 {
-	margin-bottom: 20px;
-	font-size: 24px;
-	line-height: 1.35;
-	font-weight: 600;
-	letter-spacing: -0.025em;
-	color: #474747;
-}
-
-p {
-	margin-bottom: 28px;
-	font-size: 24px;
-	line-height: 1.5;
-	color: #666;
-	letter-spacing: 0.01em;
-}
-
-.submit {
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	min-width: 350px;
-	height: 45px;
-	border-radius: 6px;
-	color: #fff;
-	font-size: 18px;
-	font-weight: 500;
-	letter-spacing: 0.01em;
-	text-decoration: none;
-	background: linear-gradient(90deg, #9f32ff 0%, #fb07f3 100%);
-	margin-top: 24px;
-}
-
-.input-group {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
-}
-
-.input-group input {
-	width: 240px;
-	height: 36px;
-	padding: 0 12px;
-	border: none;
-	border-radius: 4px;
-	margin-right: 4px;
-	font-size: 14px;
-	font-family: "Nunito Sans", sans-serif;
-	background-color: #f6f8fa;
-	color: #333e47;
-}
-
-.input-group input:focus, .input-group button:focus {
-	box-shadow: none;
-	outline: none;
-}
-
-.input-group input::placeholder {
-	color: #b6bec8;
-}
-
-.input-group-table .tr {
-	margin-bottom: 10px;
-}
-</style>
 </head>
 <body>
 	<div class="modal">
@@ -219,7 +99,7 @@ p {
 			</table>
 		</form>
 
-		<a class="submit" href="list">LIST</a>
+		<a class="submit" href="list?page=0">LIST</a>
 	</div>
 </body>
 </html>

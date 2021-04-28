@@ -19,8 +19,8 @@ public class DispatcherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private Map<String, AbstractController> controllerMap = new HashMap<String, AbstractController>();
+	private ViewResolver viewResolver;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void init() throws ServletException {
 
@@ -38,6 +38,10 @@ public class DispatcherServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		viewResolver = new ViewResolver();
+		viewResolver.setPrefix("./");
+		viewResolver.setSuffix("");
 	}
 
 	@Override
@@ -63,5 +67,26 @@ public class DispatcherServlet extends HttpServlet {
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewName);
 			dispatcher.forward(req, res);
 		}
+		
+//		process(req, res);
 	}
+
+//	protected void process(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		String uri = request.getRequestURI();
+//		String path = uri.substring(uri.lastIndexOf("/"));
+//
+//		AbstractController controller = controllerMap.get(path);
+//
+//		ModelAndView mv = controller.handleRequestInternal(request, response);
+//		String viewName = mv.getViewName();
+//
+//		String view = null;
+//
+//		if (!viewName.contains(".do")) {
+//			view = viewResolver.getView(viewName);
+//		} else {
+//			view = viewName;
+//		}
+//	}
 }

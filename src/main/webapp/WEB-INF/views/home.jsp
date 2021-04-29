@@ -5,8 +5,13 @@
 <head>
 <title>데브로필, 나만의 프로필을 만들다.</title>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="../resources/css/home.css"/>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="../resources/css/home.css" />
+<link rel="shortcut icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
+<link rel="icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
 <body>
 	<section class="modal">
 		<div>

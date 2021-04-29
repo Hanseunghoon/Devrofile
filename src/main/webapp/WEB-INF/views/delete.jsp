@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/delete.css"/>
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/delete.css" />
+<link rel="shortcut icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
+<link rel="icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
 <title>데브로필 삭제 - 데브로필, 나만의 프로필을 만들다.</title>
 </head>
 <body>

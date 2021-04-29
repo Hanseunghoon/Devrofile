@@ -13,6 +13,10 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/detail.css">
+<link rel="shortcut icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
+<link rel="icon" href="../resources/assets/favicon.ico"
+	type="image/x-icon">
 <title>${dto.nickname}(${dto.username})님의데브로필-데브로필,나만의프로필을만들다.</title>
 <script type="text/javascript"
 	src="/Devrofile/webjars/jquery/3.6.0/jquery.js"></script>
@@ -133,9 +137,8 @@ $(function(){
 			<input type="hidden" name="profile_no" value="${dto.profile_no}">
 			<table id="list">
 				<tr>
-					<td class="stats">
-						<input class="stats-likes" type="submit" value="">
-						<strong class="stats-likes-result" >${dto.likes}</strong>
+					<td class="stats"><input class="stats-likes" type="submit"
+						value=""> <strong class="stats-likes-result">${dto.likes}</strong>
 					</td>
 				</tr>
 			</table>

@@ -284,5 +284,4 @@ public class ProfileDAOImpl implements ProfileDAO {
 		}
 		return likes;
 	}
-
 }
